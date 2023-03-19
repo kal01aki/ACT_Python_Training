@@ -46,12 +46,20 @@ integers as input and returns the largest
 difference between any two adjacent numbers.
 '''
 def q4(integer_list:list) -> int:
-    pass
+    largest_diff = 0
+    for i in range(len(integer_list)-1):
+        adjacent_diff = integer_list[i+1] - integer_list[i]
+        if adjacent_diff > largest_diff:
+            largest_diff = adjacent_diff
+    return largest_diff
+
+print(q4([2,4,6,9]))
+
 
 ''' Q5 Write a function that takes a list of integers
-as input and returns the second largest number in the list.'''
+as input and returns the secondlargest number in the list.'''
 
-def second_largest(inputs:list)->int:
+def second_largest(inputs:list) -> int:
 
     inputs.sort(reverse=True)
     second_largest = inputs[1]
@@ -66,16 +74,10 @@ and False otherwise.'''
 
 def palindrome_check(check_word:str) -> bool:
 
-    word_to_list = list(check_word)
-
-    string_format_forward = str(word_to_list)
-    string_format_backward = str(word_to_list[::-1])
-
-    if string_format_backward == string_format_forward:
+    if check_word == check_word[::-1]:
         return True
     else:
         return False
-
 
 print(palindrome_check("alola"))
 
@@ -83,7 +85,12 @@ print(palindrome_check("alola"))
 as input and returns a new list with all the strings in reverse order.'''
 
 def revers_string(string_list:list) -> list:
-    pass
+    reversed_list = []
+    for x in string_list:
+        reversed_list.append(x[::-1])
+    return reversed_list
+
+print(revers_string(["one", "two", "three"]))
 
 '''Q8 Write a function that takes two lists as
 input and returns a new list with all the elements
@@ -91,7 +98,10 @@ that are common to both lists.'''
 
 def common_elements(first_list:list, second_list:list)->list:
 
-    common_element = set(first_list).intersection(set(second_list))
+    first_set = set(first_list)
+    second_set = set(second_list)
+
+    common_element = first_set.intersection(second_set)
     common_element_list = list(common_element)
 
     return common_element_list
